@@ -6,12 +6,16 @@ const useSearch = (query: string, type: string = 'track') => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (query === '') {
+        return;
+      }
+
       const instance = await getInstance();
       const resp = await instance?.get(`search?type=${type}&q=${query}`);
       const items = resp.data.tracks.items.filter((i: any) => i.type === type);
       setResponse(items);
     };
-    fetchData();
+    fetchData().catch((e) => console.log(e));
   }, [query, type]);
 
   return response;

@@ -1,14 +1,11 @@
-import {FlatList, Text, TextInput, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {FlatList, TextInput, View} from 'react-native';
+import React, {useState} from 'react';
 import useSearch from '../api/hooks/useSearch';
+import {SpotifyPreviewItem} from '../components/SpotifyPreviewItem';
 
 const Home: React.FC = () => {
   const [value, onChangeText] = useState('Taylor Swift');
   const response = useSearch(value);
-
-  useEffect(() => {
-    console.log(response.length);
-  }, [response]);
 
   return (
     <View>
@@ -19,8 +16,8 @@ const Home: React.FC = () => {
       />
       <FlatList
         data={response}
-        renderItem={({index, item: {name}}) => {
-          return <Text key={index}>{name}</Text>;
+        renderItem={({index, item}) => {
+          return <SpotifyPreviewItem key={index} item={item} />;
         }}
       />
     </View>
