@@ -1,14 +1,10 @@
-/**
- * @format
- */
-
 import 'react-native';
 import React from 'react';
-import App from '../src';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+import Home from '../src/screens/Home';
 
 it('renders correctly', () => {
-  renderer.create(<App />);
+  renderer.create(<Home />);
 });
