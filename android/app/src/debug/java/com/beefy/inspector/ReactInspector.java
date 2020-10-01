@@ -2,6 +2,7 @@ package com.beefy.inspector;
 
 import android.content.Context;
 
+import com.beefy.InspectorCookieJar;
 import com.facebook.react.modules.network.NetworkingModule;
 
 import br.newm.inspector.Inspector;

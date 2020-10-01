@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.facebook.react.PackageList;
+import com.facebook.react.modules.network.NetworkingModule;
 import com.reactnativenavigation.NavigationApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -12,8 +13,15 @@ import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 
 public class MainApplication extends NavigationApplication {
 
@@ -47,19 +55,23 @@ public class MainApplication extends NavigationApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    
+
     initializeInspector(this);
   }
 
   private void initializeInspector(Context context) {
-    try {
+    if (BuildConfig.DEBUG)
+      try {
+        Class<?> inspector = Class.forName("com.beefy.inspector.ReactInspector");
+        inspector.getMethod("initializeInspector", Context.class).invoke(null, context);
 
-      Class<?> inspector = Class.forName("com.beefy.inspector.ReactInspector");
-      inspector.getMethod("initializeInspector", Context.class).invoke(null, context);
-
-    } catch (Exception e) {
-      Log.d("Inspector", e.toString());
-    }
+      } catch (Exception e) {
+        Log.d("Inspector", e.toString());
+      }
+    else
+      NetworkingModule.setCustomClientBuilder(builder -> {
+        builder.cookieJar(new InspectorCookieJar());
+      });
   }
 
 }

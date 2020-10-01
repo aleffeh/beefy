@@ -1,4 +1,4 @@
-package com.beefy.inspector;
+package com.beefy;
 
 import org.jetbrains.annotations.NotNull;
 
