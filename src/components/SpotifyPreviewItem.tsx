@@ -11,23 +11,8 @@ import {Navigation} from 'react-native-navigation';
 
 interface ISpotifyPreviewItem {
   item: any;
+  callback?: (value: string) => {};
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    height: 60,
-    margin: 2,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-  },
-  image: {
-    width: 64,
-    height: 64,
-  },
-  infoContainer: {},
-  title: {},
-});
 
 export const SpotifyPreviewItem: React.FC<ISpotifyPreviewItem> = ({item}) => {
   const onPress = () => {
@@ -58,3 +43,19 @@ export const SpotifyPreviewItem: React.FC<ISpotifyPreviewItem> = ({item}) => {
     </TouchableNativeFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    height: 60,
+    margin: 2,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+  },
+  image: {
+    width: 64,
+    height: 64,
+  },
+  infoContainer: {},
+  title: {},
+});

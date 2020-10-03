@@ -1,11 +1,13 @@
 import {FlatList, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import useSearch from '../api/hooks/useSearch';
+import useSearch from '../hooks/useSearch';
 import {SpotifyPreviewItem} from '../components/SpotifyPreviewItem';
 
 const Home: React.FC = () => {
   const [value, onChangeText] = useState('Taylor Swift');
   const response = useSearch(value);
+
+  fetch('https://google.com').then((response) => console.log(response));
 
   return (
     <View>
