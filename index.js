@@ -21,8 +21,9 @@ Navigation.events().registerAppLaunchedListener(() => {
 
 Navigation.setDefaultOptions({
   statusBar: {
-    backgroundColor: '#fdc314',
+    backgroundColor: '#292929',
   },
+
   topBar: {
     visible: false,
   },

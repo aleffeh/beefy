@@ -19,6 +19,7 @@
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-navigation": "^7.1.0",
+    "react-native-vector-icons": "git://github.com/VortigoGit/react-native-vector-icons.git#master",
     "recoil": "https://github.com/theleaguevoice/Recoil.git#nightly"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.49",
     "@types/react-native": "^0.63.23",
+    "@types/react-native-vector-icons": "^6.4.6",
     "@types/react-test-renderer": "^16.9.2",
     "@types/recoil": "^0.0.1",
     "@typescript-eslint/eslint-plugin": "^2.27.0",

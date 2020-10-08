@@ -1,23 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Navigation} from 'react-native-navigation';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-interface IToast {
+interface IHaveComponentId {
   componentId: any;
 }
 
-const Toast: React.FC<IToast> = ({componentId}) => (
-  <View style={styles.root}>
-    <View style={styles.toast}>
-      <Text style={styles.text}>Copied to clipboard !!</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => Navigation.dismissOverlay(componentId)}>
-        <Text style={styles.buttonText}>OK</Text>
-      </TouchableOpacity>
+const Toast: React.FC<IHaveComponentId> = ({componentId}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      Navigation.dismissOverlay(componentId);
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <View style={styles.root}>
+      <View style={styles.toast}>
+        <Text style={styles.text}>Copied to clipboard</Text>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   root: {
@@ -26,26 +30,19 @@ const styles = StyleSheet.create({
   },
   toast: {
     elevation: 2,
-    flexDirection: 'row',
     height: 40,
-    margin: 16,
-    borderRadius: 20,
-    backgroundColor: '#fdc314',
+    marginBottom: 80,
+    marginHorizontal: 80,
+    borderRadius: 8,
+    backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   text: {
-    color: 'white',
-    fontSize: 16,
-    marginLeft: 16,
-  },
-  button: {
-    marginRight: 16,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
+    color: 'black',
     fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
